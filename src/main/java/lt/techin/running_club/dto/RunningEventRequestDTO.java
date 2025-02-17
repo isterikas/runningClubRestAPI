@@ -17,6 +17,6 @@ public record RunningEventRequestDTO(
         @NotNull(message = "Location cannot be null.")
         @Pattern(regexp = "^[A-Za-z0-9_ \\-]+$", message = "Location can only contain letters and numbers.")
         String location,
-        @Min(value = 1, message = "At least 1 participant should be entered.")
+        @Min(value = 1, message = "Cannot be 0 or a negative number.")
         int maxParticipants) {
 }

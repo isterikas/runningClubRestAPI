@@ -11,7 +11,7 @@ public class Registration {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   private User user;
   @ManyToOne(fetch = FetchType.EAGER)
   private RunningEvent runningEvent;

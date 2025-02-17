@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -90,7 +91,7 @@ public class RunningEventController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with such ID does not exist.");
     }
     if (((User) authentication.getPrincipal()).getId() != registrationRequestDTO.user().getId()) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You can only register yourself to an event.");
+      throw new IllegalArgumentException("You can only register yourself to an event.");
     }
     Registration registration = new Registration();
     registration.setUser(user.get());
