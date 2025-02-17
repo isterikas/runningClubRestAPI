@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class RunningEventController {
@@ -45,5 +48,12 @@ public class RunningEventController {
     }
     runningEventService.deleteById(eventId);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
+  @GetMapping("/events")
+  public ResponseEntity<List<RunningEventResponseDTO>> getUpcomingEvents() {
+    List<RunningEvent> upcomingEvents = runningEventService.getAllEvents().stream()
+            .filter(event -> event.getCalendarDate().isAfter(LocalDate.now())).toList();
+    return ResponseEntity.status(HttpStatus.OK).body(RunningEventMapper.toRunningEventResponseDTOList(upcomingEvents));
   }
 }
