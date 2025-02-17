@@ -12,7 +12,7 @@ import java.util.List;
 public record UserRequestDTO(
         @NotNull(message = "Username cannot be null.")
         @Length(min = 4, message = "Username must be at least 4 characters long.")
-        @Pattern(regexp = "^[a-z0-9_\\-]+$", message = "Username can only contain lowercase letters and numbers.")
+        @Pattern(regexp = "^[a-z0-9\\-]+$", message = "Username can only contain lowercase letters and numbers.")
         @UniqueUsername(message = "Username already taken.")
         String username,
         @NotNull(message = "Password cannot be null.")
