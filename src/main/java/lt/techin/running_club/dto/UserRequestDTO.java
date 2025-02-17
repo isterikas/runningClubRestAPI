@@ -14,7 +14,7 @@ public record UserRequestDTO(
         @NotNull(message = "Username cannot be null.")
         @Length(min = 4, message = "Username must be at least 4 characters long.")
         @Pattern(regexp = "^[a-z0-9_\\-]+$", message = "Username can only contain lowercase letters and numbers.")
-        @UniqueUsername
+        @UniqueUsername(message = "Username already taken.")
         String username,
         @NotNull(message = "Password cannot be null.")
         @Length(min = 6, message = "Password must be at least 6 characters long.")

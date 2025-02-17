@@ -13,16 +13,16 @@ public class RunningEvent {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String name;
-  private LocalDate date;
+  private LocalDate calendarDate;
   private String location;
   private int maxParticipants;
   @OneToMany
   @JoinColumn(name = "running_event_id")
   private List<Registration> registrations;
 
-  public RunningEvent(String name, LocalDate date, String location, int maxParticipants) {
+  public RunningEvent(String name, LocalDate calendarDate, String location, int maxParticipants) {
     this.name = name;
-    this.date = date;
+    this.calendarDate = calendarDate;
     this.location = location;
     this.maxParticipants = maxParticipants;
   }
@@ -42,12 +42,12 @@ public class RunningEvent {
     this.name = name;
   }
 
-  public LocalDate getDate() {
-    return date;
+  public LocalDate getCalendarDate() {
+    return calendarDate;
   }
 
-  public void setDate(LocalDate date) {
-    this.date = date;
+  public void setCalendarDate(LocalDate calendarDate) {
+    this.calendarDate = calendarDate;
   }
 
   public String getLocation() {

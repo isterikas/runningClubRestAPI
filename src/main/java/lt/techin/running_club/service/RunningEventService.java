@@ -1,5 +1,6 @@
 package lt.techin.running_club.service;
 
+import lt.techin.running_club.model.RunningEvent;
 import lt.techin.running_club.repository.RunningEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,5 +12,9 @@ public class RunningEventService {
   @Autowired
   public RunningEventService(RunningEventRepository runningEventRepository) {
     this.runningEventRepository = runningEventRepository;
+  }
+
+  public RunningEvent save(RunningEvent runningEvent) {
+    return runningEventRepository.save(runningEvent);
   }
 }

@@ -15,7 +15,7 @@ public record RunningEventRequestDTO(
         @Future(message = "Has to be a future date.")
         LocalDate calendarDate,
         @NotNull(message = "Location cannot be null.")
-        @Pattern(regexp = "^[A-Za-z0-9_\\-]+$", message = "Location can only contain letters and numbers.")
+        @Pattern(regexp = "^[A-Za-z0-9_ \\-]+$", message = "Location can only contain letters and numbers.")
         String location,
         @Min(value = 1, message = "At least 1 participant should be entered.")
         int maxParticipants) {
