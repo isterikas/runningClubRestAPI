@@ -28,7 +28,7 @@ public class UserService {
 
   public User saveUser(UserRequestDTO userRequestDTO) {
     List<Role> roles = userRequestDTO.roles().stream().map(role -> roleRepository.findById(role.getId()).get()).toList();
-    User user = new User(userRequestDTO.username(), passwordEncoder.encode(userRequestDTO.password()), roles);
+    User user = new User(userRequestDTO.username().toLowerCase(), passwordEncoder.encode(userRequestDTO.password()), roles);
     userRepository.save(user);
     return user;
   }

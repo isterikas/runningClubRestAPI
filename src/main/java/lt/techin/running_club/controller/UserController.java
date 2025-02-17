@@ -26,7 +26,7 @@ public class UserController {
     this.passwordEncoder = passwordEncoder;
   }
 
-  @PostMapping("/users")
+  @PostMapping("/auth/register")
   public ResponseEntity<?> createUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
     if (userRequestDTO.roles().stream().anyMatch(role -> role.getId() == 1)) { //In this case I assume that an Admin has to be a User as well.
       User savedUser = userService.saveUser(userRequestDTO);
