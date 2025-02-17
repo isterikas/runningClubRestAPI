@@ -20,16 +20,10 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(HttpMethod.POST, "/api/reservations").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/adoptions/apply").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/adoptions").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/adoptions/pending").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/api/cars/available").permitAll()
-                    .requestMatchers(HttpMethod.PUT, "/api/cars/{id}").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.DELETE, "/api/cars/{id}").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/api/rentals/history").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/events").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/api/events/{eventId}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/api/events/{eventId}/participants").hasRole("ADMIN")
                     .anyRequest().permitAll())
             .csrf(c -> c.disable())
             .httpBasic(Customizer.withDefaults());
