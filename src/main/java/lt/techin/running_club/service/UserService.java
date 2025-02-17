@@ -1,5 +1,6 @@
 package lt.techin.running_club.service;
 
+import lt.techin.running_club.dto.RegistrationRequestDTO;
 import lt.techin.running_club.dto.UserRequestDTO;
 import lt.techin.running_club.model.Role;
 import lt.techin.running_club.model.User;
@@ -35,5 +36,9 @@ public class UserService {
 
   public Optional<User> findByUsername(String username) {
     return userRepository.findUserByUsername(username);
+  }
+
+  public Optional<User> findById(long id) {
+    return userRepository.findById(id);
   }
 }
