@@ -7,7 +7,8 @@ import java.util.List;
 public class RunningEventMapper {
 
   public static RunningEventResponseDTO toRunningEventResponseDTO(RunningEvent runningEvent) {
-    return new RunningEventResponseDTO(runningEvent.getId(), runningEvent.getName(), runningEvent.getCalendarDate(), runningEvent.getLocation(), runningEvent.getMaxParticipants());
+    return new RunningEventResponseDTO(runningEvent.getId(), runningEvent.getName(),
+            runningEvent.getCalendarDate(), runningEvent.getLocation(), runningEvent.getMaxParticipants());
   }
 
   public static List<RunningEventResponseDTO> toRunningEventResponseDTOList(List<RunningEvent> runningEvents) {

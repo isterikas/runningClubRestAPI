@@ -1,6 +1,5 @@
 package lt.techin.running_club.dto;
 
-import lt.techin.running_club.dto.RoleResponseDTO;
 import lt.techin.running_club.model.Role;
 
 import java.util.List;

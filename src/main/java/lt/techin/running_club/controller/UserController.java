@@ -6,7 +6,6 @@ import lt.techin.running_club.model.User;
 import lt.techin.running_club.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,24 +16,19 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/api")
 public class UserController {
 
-  private UserService userService;
-  private PasswordEncoder passwordEncoder;
+  private final UserService userService;
 
   @Autowired
-  public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+  public UserController(UserService userService) {
     this.userService = userService;
-    this.passwordEncoder = passwordEncoder;
   }
 
   @PostMapping("/auth/register")
   public ResponseEntity<?> createUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
-    if (userRequestDTO.roles().stream().anyMatch(role -> role.getId() == 1)) { //In this case I assume that an Admin has to be a User as well.
-      User savedUser = userService.saveUser(userRequestDTO);
-      return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
-              .path("/{id}")
-              .buildAndExpand(savedUser.getId())
-              .toUri()).body(UserMapper.toUserResponseDTO(savedUser));
-    }
-    return ResponseEntity.badRequest().body("User role is mandatory.");
+    User savedUser = userService.saveUser(userRequestDTO);
+    return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(savedUser.getId())
+            .toUri()).body(UserMapper.toUserResponseDTO(savedUser));
   }
 }

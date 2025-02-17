@@ -1,9 +1,7 @@
 package lt.techin.running_club.service;
 
-import lt.techin.running_club.dto.RunningEventResponseDTO;
 import lt.techin.running_club.model.RunningEvent;
 import lt.techin.running_club.repository.RunningEventRepository;
-import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class RunningEventService {
-  private RunningEventRepository runningEventRepository;
+  private final RunningEventRepository runningEventRepository;
 
   @Autowired
   public RunningEventService(RunningEventRepository runningEventRepository) {

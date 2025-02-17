@@ -1,6 +1,5 @@
 package lt.techin.running_club.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record RegistrationResponseDTO(
